@@ -17,11 +17,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> findAllByOrderByIdAsc() {
+    public List<User> findAll() {
+        return userRepository.findAllByOrderByIdAsc();
+    }
 
-        List<User> userList = userRepository.findAllByOrderByIdAsc();
-
-        return userList;
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 
 }

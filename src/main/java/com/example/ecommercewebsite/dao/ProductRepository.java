@@ -1,5 +1,6 @@
 package com.example.ecommercewebsite.dao;
 
+import com.example.ecommercewebsite.model.Product;
 import com.example.ecommercewebsite.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -7,10 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface ProductRepository extends CrudRepository<Product, Integer> {
 
-    List<User> findAllByOrderByIdAsc();
-
-    User save(User user);
+    List<Product> findAllByOrderByIdAsc();
 
 }
