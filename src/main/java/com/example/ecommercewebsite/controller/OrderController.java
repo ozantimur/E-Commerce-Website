@@ -1,8 +1,7 @@
 package com.example.ecommercewebsite.controller;
 
-
-import com.example.ecommercewebsite.model.User;
-import com.example.ecommercewebsite.service.UserService;
+import com.example.ecommercewebsite.model.Order;
+import com.example.ecommercewebsite.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,36 +10,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/orders")
+public class OrderController {
 
     @Autowired
-    private UserService userService;
+    private OrderService orderService;
 
     @GetMapping("/info")
-    public List<User> getAllUsers() {
+    public List<Order> getAllOrders() {
 
         try {
 
-            List<User> users = userService.findAll();
-            return users;
+            List<Order> orderList = orderService.findAllOrders();
+            return orderList;
 
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-
     }
 
-    @PostMapping("/sing-in")
-    public ResponseEntity<Boolean> createUser(@RequestBody User user) {
+    @PostMapping("/place-order")
+    public ResponseEntity<Boolean> placeOrder(@RequestBody Order order) {
         try {
-            userService.saveUser(user);
+            orderService.placeOrder(order);
             return new ResponseEntity<Boolean>(true, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Boolean>(false, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
 }
