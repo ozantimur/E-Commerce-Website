@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/info")
     public List<User> getAllUsers() {
@@ -32,7 +36,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/sing-in")
+    @PostMapping("/sing-up")
     public ResponseEntity<Boolean> createUser(@RequestBody User user) {
         try {
             userService.saveUser(user);
@@ -42,5 +46,14 @@ public class UserController {
         }
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {
+        User user = userService.findByEmailAndPassword(email, password);
+        if (user != null) {
+            return new ResponseEntity<String>("User logged in successfully!", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("Invalid email or password.", HttpStatus.UNAUTHORIZED);
+        }
+    }
 
 }
