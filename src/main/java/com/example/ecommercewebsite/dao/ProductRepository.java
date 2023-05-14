@@ -10,6 +10,10 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Integer> {
 
-    List<Product> findAllByOrderByIdAsc();
+    List<Product> findAllOrderByIdAsc(); // List<Product> findAllByOrderByIdAsc();
+
+    Product findByIdIs(Integer id);
+
+    List<Product> findAllByBrandIs(String brand);
 
 }

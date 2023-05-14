@@ -19,7 +19,6 @@ public class ProductController {
 
     @GetMapping("/info")
     public List<Product> getAllProducts() {
-
         try {
 
             List<Product> productList = productService.findAll();
@@ -29,6 +28,5 @@ public class ProductController {
             e.printStackTrace();
             return null;
         }
-
     }
 }

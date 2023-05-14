@@ -18,7 +18,7 @@ public class UserService {
     }
 
     public List<User> findAll() {
-        return userRepository.findAllByOrderByIdAsc();
+        return (List<User>) userRepository.findAll();
     }
 
     public User saveUser(User user) {

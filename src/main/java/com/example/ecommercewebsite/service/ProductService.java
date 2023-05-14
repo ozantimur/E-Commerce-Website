@@ -18,7 +18,7 @@ public class ProductService {
     }
 
     public List<Product> findAll() {
-        return productRepository.findAllByOrderByIdAsc();
+        return (List<Product>) productRepository.findAll();
     }
 
 }
